@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { NextPage } from 'next';
+import { NextPage } from 'next/types';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { AiFillHome, AiOutlineMenu } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import GoogleLogin from 'react-google-login';
+import Discover from './Discover';
+import SuggestedAccounts from './SuggestedAccounts';
 
-const Sidebar = () => {
+const Sidebar: NextPage = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const normalLink =
     'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#8ee53f] rounded';
@@ -57,6 +59,8 @@ const Sidebar = () => {
               </div>
             </div>
           )}
+          <Discover />
+          <SuggestedAccounts />
         </div>
       )}
     </div>
