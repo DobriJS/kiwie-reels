@@ -36,3 +36,7 @@ export const topics = [
     icon: <FaMedal />
   }
 ];
+
+export const footerList1 = ['About', 'Newsroom', 'Store', 'Contact'];
+export const footerList2 = ['Advertise', 'Developers', 'Transparency'];
+export const footerList3 = ['Help', 'Safety', 'Terms', 'Privacy'];
