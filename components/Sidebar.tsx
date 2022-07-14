@@ -7,6 +7,7 @@ import { ImCancelCircle } from 'react-icons/im';
 import GoogleLogin from 'react-google-login';
 import Discover from './Discover';
 import SuggestedAccounts from './SuggestedAccounts';
+import Footer from './Footer';
 
 const Sidebar: NextPage = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -61,6 +62,7 @@ const Sidebar: NextPage = () => {
           )}
           <Discover />
           <SuggestedAccounts />
+          <Footer />
         </div>
       )}
     </div>
