@@ -1,9 +1,31 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
+import axios from 'axios';
+import NoResults from '../components/NoResults';
+import VideoCard from '../components/VideoCard';
+import { VideoProps, VideoResponseProps } from '../types';
 
-const Home: NextPage = () => {
-  return <h1 className='text-3xl font-bold underline'></h1>;
+const Home = ({ videos }: VideoResponseProps) => {
+  console.log(videos);
+  return (
+    <div className='flex flex-col gap-10 videos h-full'>
+      {videos.length ? (
+        videos.map((video: VideoProps) => (
+          <VideoCard post={video} key={video._id} />
+        ))
+      ) : (
+        <NoResults text={'No results found'} />
+      )}
+    </div>
+  );
+};
+
+export const getServerSideProps = async () => {
+  const { data } = await axios.get(`http://localhost:3000/api/post`);
+
+  return {
+    props: {
+      videos: data
+    }
+  };
 };
 
 export default Home;
