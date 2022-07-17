@@ -4,7 +4,6 @@ import VideoCard from '../components/VideoCard';
 import { VideoProps, VideoResponseProps } from '../types';
 
 const Home = ({ videos }: VideoResponseProps) => {
-  console.log(videos);
   return (
     <div className='flex flex-col gap-10 videos h-full'>
       {videos.length ? (
