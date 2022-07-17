@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
+import useAuthStore from '../store/authStore';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { BiSearch } from 'react-icons/bi';
@@ -12,7 +12,7 @@ import { NextPage } from 'next/types';
 import { createOrGetUser } from '../utils';
 
 const Navbar: NextPage = () => {
-  const user = false;
+  const { userProfile, addUser } = useAuthStore();
 
   return (
     <div className='w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4'>
@@ -29,11 +29,11 @@ const Navbar: NextPage = () => {
       </Link>
       <div>SEARCH</div>
       <div>
-        {user ? (
-          <div>Logged In</div>
+        {userProfile ? (
+          <div>{userProfile.userName}</div>
         ) : (
           <GoogleLogin
-            onSuccess={(response) => createOrGetUser(response)}
+            onSuccess={(response) => createOrGetUser(response, addUser)}
             onError={() => console.log('Error')}
           />
         )}
