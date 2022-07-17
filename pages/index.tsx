@@ -2,6 +2,7 @@ import axios from 'axios';
 import NoResults from '../components/NoResults';
 import VideoCard from '../components/VideoCard';
 import { VideoProps, VideoResponseProps } from '../types';
+import { BASE_URL } from '../utils';
 
 const Home = ({ videos }: VideoResponseProps) => {
   return (
@@ -18,7 +19,7 @@ const Home = ({ videos }: VideoResponseProps) => {
 };
 
 export const getServerSideProps = async () => {
-  const { data } = await axios.get(`http://localhost:3000/api/post`);
+  const { data } = await axios.get(`${BASE_URL}/api/post`);
 
   return {
     props: {
