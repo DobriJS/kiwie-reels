@@ -12,7 +12,6 @@ const Sidebar: NextPage = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const normalLink =
     'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#8ee53f] rounded';
-  const userProfile = false;
 
   return (
     <div>
@@ -35,13 +34,6 @@ const Sidebar: NextPage = () => {
               </div>
             </Link>
           </div>
-          {!userProfile && (
-            <div className='px-2 py-4 hidden xl:block'>
-              <p className='text-grey-400'>
-                Log in to like and comment on videos
-              </p>
-            </div>
-          )}
           <Discover />
           <SuggestedAccounts />
           <Footer />
