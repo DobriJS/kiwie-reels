@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import { SanityAssetDocument } from '@sanity/client';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
@@ -16,6 +16,10 @@ const Upload = () => {
     SanityAssetDocument | undefined
   >();
   const [wrongFileType, setWrongFileType] = useState(false);
+  const [caption, setCaption] = useState('');
+  const [category, setCategory] = useState(topics[0].name);
+  const [savingPost, setSavingPost] = useState(false);
+  const userProfile: any = useAuthStore((state) => state.userProfile);
 
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
@@ -39,7 +43,31 @@ const Upload = () => {
     }
   };
 
-  //
+  const handlePost = async () => {
+    if (caption && videoAsset?._id && category) {
+      setSavingPost(true);
+    }
+
+    const doc = {
+      _type: 'post',
+      caption,
+      video: {
+        _type: 'file',
+        asset: {
+          _type: 'reference',
+          _ref: videoAsset?._id
+        }
+      },
+      userId: userProfile?._id,
+      postedBy: {
+        _type: 'postedBy',
+        _ref: userProfile?._id
+      },
+      topic: category
+    };
+    await axios.post(`http://localhost:3000/api/post`, doc);
+    router.push('/');
+  };
 
   return (
     <div className='flex justify-center w-full h-full absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8]'>
@@ -108,13 +136,13 @@ const Upload = () => {
           <input
             className='lg:after:w-650 p-2 outline-none rounded text-md border-2 border-gray-200'
             type='text'
-            value=''
-            onChange={() => {}}
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
           />
           <label className='text-md font-medium'>Choose a Category</label>
           <select
-            className='outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer'
-            onChange={() => {}}
+            className='outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-2.2 p-2 rounded cursor-pointer'
+            onChange={(e) => setCategory(e.target.value)}
           >
             {topics.map((topic) => (
               <option
@@ -135,7 +163,7 @@ const Upload = () => {
               Discard
             </button>
             <button
-              onClick={() => {}}
+              onClick={handlePost}
               type='button'
               className='bg-[#8ee53f] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
             >
