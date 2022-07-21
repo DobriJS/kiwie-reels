@@ -7,7 +7,7 @@ const List = ({ items, mt }: { items: string[]; mt: boolean }) => (
     {items.map((item) => (
       <p
         key={item}
-        className='text-gray-400 text-sm hover:underline cursor-pointer'
+        className='cursor-pointer text-sm text-gray-400 hover:underline'
       >
         {item}
       </p>
@@ -21,7 +21,7 @@ const Footer: NextPage = () => {
       <List items={footerList1} mt={false} />
       <List items={footerList2} mt />
       <List items={footerList3} mt />
-      <p className='text-gray-400 text-sm mt-5'>KIWIE REELS 2022</p>
+      <p className='mt-5 text-sm text-gray-400'>KIWIE REELS 2022</p>
     </div>
   );
 };

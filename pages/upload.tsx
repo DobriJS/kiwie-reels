@@ -70,18 +70,18 @@ const Upload = () => {
   };
 
   return (
-    <div className='flex justify-center w-full h-full absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8]'>
-      <div className='flex flex-wrap justify-center items-center gap-6 xl:h-[80vh] p-14 pt-6 bg-white rounded-lg'>
+    <div className='absolute left-0 top-[60px] mb-10 flex h-full w-full justify-center bg-[#F8F8F8] pt-10 lg:top-[70px] lg:pt-20'>
+      <div className='flex flex-wrap items-center justify-center gap-6 rounded-lg bg-white p-14 pt-6 xl:h-[80vh]'>
         <div>
           <div>
             <p className='text-2xl font-bold'>Upload Video</p>
-            <p className='mt-1 text-md text-gray-400 '>
+            <p className='text-md mt-1 text-gray-400 '>
               Post a video to your account
             </p>
           </div>
-          <div className='flex flex-col justify-center items-center w-[260px] h-[460px] outline-none mt-10 p-10 border-dashed rounded-xl border-4 border-gray-200 hover:border-green-200 hover:bg-gray-100 cursor-pointer'>
+          <div className='mt-10 flex h-[460px] w-[260px] cursor-pointer flex-col items-center justify-center rounded-xl border-4 border-dashed border-gray-200 p-10 outline-none hover:border-green-200 hover:bg-gray-100'>
             {isLoading ? (
-              <p className='text-center text-3xl text-red-400 font-semibold'>
+              <p className='text-center text-3xl font-semibold text-red-400'>
                 Uploading...
               </p>
             ) : (
@@ -89,7 +89,7 @@ const Upload = () => {
                 {videoAsset ? (
                   <div>
                     <video
-                      className='h-[450px] mt-16 rounded-xl bg-black'
+                      className='mt-16 h-[450px] rounded-xl bg-black'
                       src={videoAsset.url}
                       loop
                       controls
@@ -97,20 +97,20 @@ const Upload = () => {
                   </div>
                 ) : (
                   <label className='cursor-pointer'>
-                    <div className='h-full flex flex-col items-center justify-center'>
+                    <div className='flex h-full flex-col items-center justify-center'>
                       <div className='flex flex-col items-center justify-center'>
-                        <p className='font-bold text-xl'>
-                          <FaCloudUploadAlt className='text-gray-300 text-6xl' />
+                        <p className='text-xl font-bold'>
+                          <FaCloudUploadAlt className='text-6xl text-gray-300' />
                         </p>
                         <p className='text-xl font-semibold'>Upload Video</p>
                       </div>
-                      <p className='text-gray-400 text-center mt-10 text-sm leading-10'>
+                      <p className='mt-10 text-center text-sm leading-10 text-gray-400'>
                         MP4 or WebM or ogg <br />
                         720x1280 resolution or higher <br />
                         Up to 10 minutes <br />
                         Less than 2 GB
                       </p>
-                      <p className='bg-[#8ee53f] text-center mt-8 rounded text-white text-md font-medium p-2 w-52 outline-none'>
+                      <p className='text-md mt-8 w-52 rounded bg-[#8ee53f] p-2 text-center font-medium text-white outline-none'>
                         Select File
                       </p>
                     </div>
@@ -118,14 +118,14 @@ const Upload = () => {
                       type='file'
                       name='upload-video'
                       onChange={uploadVideo}
-                      className='w-0 h-0'
+                      className='h-0 w-0'
                     />
                   </label>
                 )}
               </div>
             )}
             {wrongFileType && (
-              <p className='text-center text-xl text-red-400 font-semibold mt-4 w-[250px]'>
+              <p className='mt-4 w-[250px] text-center text-xl font-semibold text-red-400'>
                 Please select a video file
               </p>
             )}
@@ -134,38 +134,38 @@ const Upload = () => {
         <div className='flex flex-col gap-3 pb-10'>
           <label className='text-md font-medium'>Caption</label>
           <input
-            className='lg:after:w-650 p-2 outline-none rounded text-md border-2 border-gray-200'
+            className='text-md rounded border-2 border-gray-200 p-2 outline-none lg:after:w-650'
             type='text'
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
           />
           <label className='text-md font-medium'>Choose a Category</label>
           <select
-            className='outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-2.2 p-2 rounded cursor-pointer'
+            className='text-md lg:p-2.2 cursor-pointer rounded border-2 border-gray-200 p-2 capitalize outline-none lg:w-650'
             onChange={(e) => setCategory(e.target.value)}
           >
             {topics.map((topic) => (
               <option
                 key={topic.name}
-                className='outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300'
+                className='text-md bg-white p-2 capitalize text-gray-700 outline-none hover:bg-slate-300'
                 value={topic.name}
               >
                 {topic.name}
               </option>
             ))}
           </select>
-          <div className='flex gap-6 mt-10'>
+          <div className='mt-10 flex gap-6'>
             <button
               onClick={() => {}}
               type='button'
-              className='border-gray-300 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
+              className='text-md w-28 rounded border-2 border-gray-300 p-2 font-medium outline-none lg:w-44'
             >
               Discard
             </button>
             <button
               onClick={handlePost}
               type='button'
-              className='bg-[#8ee53f] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
+              className='text-md w-28 rounded bg-[#8ee53f] p-2 font-medium text-white outline-none lg:w-44'
             >
               Post
             </button>

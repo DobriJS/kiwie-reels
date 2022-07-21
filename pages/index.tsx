@@ -6,7 +6,7 @@ import { BASE_URL } from '../utils';
 
 const Home = ({ videos }: VideoResponseProps) => {
   return (
-    <div className='flex flex-col gap-10 videos h-full'>
+    <div className='videos flex h-full flex-col gap-10'>
       {videos.length ? (
         videos.map((video: VideoProps) => (
           <VideoCard post={video} key={video._id} />

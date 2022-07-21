@@ -21,9 +21,9 @@ const Navbar: NextPage = () => {
   }, [userProfile]);
 
   return (
-    <div className='w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4'>
+    <div className='flex w-full items-center justify-between border-b-2 border-gray-200 py-2 px-4'>
       <Link href='/' rel='preload'>
-        <div className='w-[100px] md:w-[130px] md:h-[30px] h-[38px]'>
+        <div className='h-[38px] w-[100px] md:h-[30px] md:w-[130px]'>
           <Image
             className='cursor-pointer'
             src={Logo}
@@ -38,7 +38,7 @@ const Navbar: NextPage = () => {
         {user ? (
           <div className='flex gap-5 md:gap-10'>
             <Link href='/upload'>
-              <button className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2'>
+              <button className='text-md flex items-center gap-2 border-2 px-2 font-semibold md:px-4'>
                 <IoMdAdd className='text-xl' />{' '}
                 <span className='hidden md:block'>Upload</span>
               </button>
@@ -49,7 +49,7 @@ const Navbar: NextPage = () => {
                   <Image
                     width={40}
                     height={40}
-                    className='rounded-full cursor-pointer'
+                    className='cursor-pointer rounded-full'
                     src={user.image}
                     alt='user-photo'
                   />
